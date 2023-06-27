@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvxct1"
+        android:text="Xem chi tiet mon an"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:gravity="center"/>
+    <ScrollView
+        android:id="@+id/sc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/imgssmonan11"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="150dp"/>
+            <ImageButton
+                android:id="@+id/heart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/heart_white"
+                android:layout_marginTop="30dp"/>
+        </LinearLayout>
+        <EditText
+        android:id="@+id/edtudma21"
+        android:hint="Ten mon an"
+        android:textColorHint="@color/black"
+        android:textSize="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/udloaima1"
+        android:hint="Loai mon an"
+        android:textColorHint="@color/black"
+        android:textSize="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/udgiama1"
+        android:hint="Gia mon an"
+        android:textColorHint="@color/black"
+        android:textSize="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/uddiachiban1"
+        android:hint="Dia chi ban"
+        android:textColorHint="@color/black"
+        android:textSize="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/udmotama1"
+        android:hint="Mo ta mon an"
+        android:textColorHint="@color/black"
+        android:textSize="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/soluonmonan1"
+    android:hint="Nhap so luong"/>
+    <Button
+        android:id="@+id/themvaogiohang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thêm"/>
+    </LinearLayout>
+    </ScrollView>
+</TableLayout>
