@@ -26,7 +26,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE monan(ID INTEGER PRIMARY KEY AUTOINCREMENT,username TEXT,img TEXT, title TEXT, category TEXT, price TEXT, diachi TEXT, mota TEXT, date TEXT,ghichu TEXT)");
         db.execSQL("CREATE TABLE thongbao(ID INTEGER PRIMARY KEY AUTOINCREMENT,tieude TEXT, noidung TEXT,mota TEXT, date TEXT)");
         db.execSQL("CREATE TABLE giohang(ID INTEGER PRIMARY KEY AUTOINCREMENT,username TEXT,imgsp TEXT, idsp TEXT,tensp TEXT,giasp TEXT,soluongsp TEXT)");
-        db.execSQL("CREATE TABLE donhang(ID INTEGER PRIMARY KEY AUTOINCREMENT,username TEXT, idmonan TEXT,nammonan TEXT,giamonan TEXT,soluongmonan TEXT, diachinhan TEXT,ghichu TEXT, date TEXT)");
+        db.execSQL("CREATE TABLE donhang(ID INTEGER PRIMARY KEY AUTOINCREMENT,username TEXT, trangthai TEXT,tongtien TEXT,tienphichuyen TEXT, diachinhan TEXT,ghichu TEXT, date TEXT)");
+        db.execSQL("CREATE TABLE donhangma(ID INTEGER PRIMARY KEY AUTOINCREMENT,iddh TEXT,idmonan TEXT,solgma TEXT,gtma TEXT)");
     }
 
     @Override
@@ -111,14 +112,13 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-    public boolean Inserttdonhang(String username,String idmonan,String nammonan,String giamonan ,String soluongmonan,String diachinhan,String  ghichu,String date) {
+    public boolean Inserttdonhang(String username,String trangthai,String tongtien,String tienphichuyen,String diachinhan,String ghichu,String date) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username",username );
-        contentValues.put("idmonan", idmonan);
-        contentValues.put("nammonan", nammonan);
-        contentValues.put("giamonan", giamonan);
-        contentValues.put("soluongmonan", soluongmonan);
+        contentValues.put("trangthai", trangthai);
+        contentValues.put("tongtien", tongtien);
+        contentValues.put("tienphichuyen", tienphichuyen);
         contentValues.put("diachinhan", diachinhan);
         contentValues.put("ghichu", ghichu);
         contentValues.put("date", date);
@@ -128,6 +128,17 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         } else {
             return true;
         }
+    }
+    public boolean Insertdhma( String iddh,String idmonan,String solgma,String gtma){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues contentValues=new ContentValues();
+        contentValues.put("iddh",iddh);
+        contentValues.put("idmonan",idmonan);
+        contentValues.put("solgma",solgma);
+        contentValues.put("gtma",gtma);
+        long result=db.insert("donhangma",null,contentValues);
+        if(result == -1) return false;
+        else return true;
     }
         public Boolean CheckUsername(String username){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
@@ -170,6 +181,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             return false;
 
         }
+    }
+    public Boolean checkyeuthich(String id,String ghichu){
+        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+        Cursor cursor=sqLiteDatabase.rawQuery("SELECT * FROM monan WHERE ID=? AND ghichu=?",new String[]{id,ghichu});
+        if(cursor.getCount()>0) return true;
+        else return false;
     }
     public Cursor getData(String sql){
         SQLiteDatabase db=getReadableDatabase();
@@ -268,6 +285,24 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         }
         return item;
     }
+    public List<Item> timmonan(String tenma){
+        List<Item> list=new ArrayList<>();
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.query("monan",null,"title LIKE ?",new String[]{"%"+tenma+"%"},null,null,null);
+        while (cursor!=null && cursor.moveToNext()){
+            int idsp=cursor.getInt(0);
+            String username=cursor.getString(1);
+            int img=cursor.getInt(2);
+            String title=cursor.getString(3);
+            String category=cursor.getString(4);
+            String price= cursor.getString(5);
+            String diachi= cursor.getString(6);
+            String mota=cursor.getString(7);
+            String date=cursor.getString(8);
+            list.add(new Item(idsp,img,username,title,category,price,diachi,mota,date));
+        }
+        return list;
+    }
     public List<Giohang> laydatagiohang(String username){
         List<Giohang> list=new ArrayList<>();
         SQLiteDatabase db=this.getReadableDatabase();
@@ -281,6 +316,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             String giasp=cursor.getString(5);
             String soluongmonan=cursor.getString(6);
             list.add(new Giohang(id,imgsp,idsp,tensp,giasp,soluongmonan));
+            Log.e("Test",id+imgsp+idsp+tensp+giasp+soluongmonan);
         }
         db.close();
         cursor.close();
@@ -294,14 +330,13 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         while (cursor!=null && cursor.moveToNext()){
             int id=cursor.getInt(0);
             String username=cursor.getString(1);
-            String idmonan=cursor.getString(2);
-            String nammonan=cursor.getString(3);
-            String giamonan=cursor.getString(4);
-            String soluongmonan=cursor.getString(5);
-            String diachinhan=cursor.getString(6);
-            String ghichu=cursor.getString(7);
-            String date=cursor.getString(8);
-            list.add(new Donhang(id,username,idmonan,nammonan,giamonan ,soluongmonan,diachinhan,ghichu,date));
+            String trangthai=cursor.getString(2);
+            String tongtien=cursor.getString(3);
+            String tienphichuyen=cursor.getString(4);
+            String diachinhan=cursor.getString(5);
+            String ghichu=cursor.getString(6);
+            String date=cursor.getString(7);
+            list.add(new Donhang(id,username,trangthai,tongtien,tienphichuyen,diachinhan,ghichu,date));
         }
         return list;
     }
@@ -330,6 +365,22 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         }else{
             return true;
         }
+    }
+    public void updateghichu(int id){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        String ghichu="yeuthich";
+        contentValues.put("ghichu", ghichu);
+        String iditem=Integer.toString(id);
+        long result = sqLiteDatabase.update("monan",contentValues,"ID=?",new String[]{iditem});
+    }
+    public void updateghichu1(int id){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        String ghichu="khongyeuthich";
+        contentValues.put("ghichu", ghichu);
+        String iditem=Integer.toString(id);
+        long result = sqLiteDatabase.update("monan",contentValues,"ID=?",new String[]{iditem});
     }
     public boolean updategioitinh(String gioitinh,String username){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();

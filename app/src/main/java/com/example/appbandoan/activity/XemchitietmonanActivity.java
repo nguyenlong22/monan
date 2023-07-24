@@ -2,12 +2,11 @@ package com.example.appbandoan.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -21,10 +20,13 @@ import com.example.appbandoan.utils.MySharedPreferences;
 public class XemchitietmonanActivity extends AppCompatActivity {
     private EditText tenmonan,loaimonan,giamonan,diachimonan,motamonan;
      EditText soluongmonan;
-    Button themvaogiohang,heart;
+    Button themvaogiohang;
+    ImageButton heart;
     MySharedPreferences preferences;
     SQLiteHelper sqLiteHelper;
     ImageView img1;
+    Boolean checkyeuthich;
+    Item item;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,35 +45,27 @@ public class XemchitietmonanActivity extends AppCompatActivity {
 
         Intent intent=getIntent();
         String itemid= intent.getStringExtra("item_key");
-        Item item=sqLiteHelper.laydatamonan(itemid);
+         item=sqLiteHelper.laydatamonan(itemid);
         String tenmonan2=item.getTitle();
         String loaimonan2=item.getCategory();
         String giamonan2=item.getPrice();
         String diachimonan2=item.getDiachi();
         String motamonan2=item.getMota();
-        int img=item.getImg();
-        //mì nhà hàng  30000 Hà Nội ngon bún bò Huế
-        if(img==1) img1.setImageResource(R.drawable.banhmi);
-        if(img==2) img1.setImageResource(R.drawable.banhmi2);
-        if(img==3) img1.setImageResource(R.drawable.bunbo);
-        if(img==4) img1.setImageResource(R.drawable.bunbohue);
-        if(img==5) img1.setImageResource(R.drawable.humbeger);
-        if(img==6) img1.setImageResource(R.drawable.humbeger2);
-        if(img==7) img1.setImageResource(R.drawable.mi);
-        if(img==8) img1.setImageResource(R.drawable.mi2);
-        if(img==9) img1.setImageResource(R.drawable.trasua);
-        if(img==10) img1.setImageResource(R.drawable.trasua2);
-        if(img==11) img1.setImageResource(R.drawable.tratac);
+        String ghichu1="yeuthich";
+        img1.setImageResource(item.getImg());
         tenmonan.setText(tenmonan2);
         loaimonan.setText(loaimonan2);
         giamonan.setText(giamonan2);
         diachimonan.setText(diachimonan2);
         motamonan.setText(motamonan2);
-        Log.e("Test",Integer.toString(img));
+         checkyeuthich=sqLiteHelper.checkyeuthich(itemid,ghichu1);
+        if(checkyeuthich==true) heart.setBackgroundResource(R.drawable.anhtimdo);
+        else heart.setBackgroundResource(R.drawable.anhtimtrang);
+
         heart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                heart.setBackgroundResource(R.drawable.heart_red);
+                    heartclick();
             }
         });
         themvaogiohang.setOnClickListener(new View.OnClickListener() {
@@ -83,8 +77,6 @@ public class XemchitietmonanActivity extends AppCompatActivity {
                 int imgsp=item.getImg();
                 String tensp=item.getTitle();
                 String giasp=item.getPrice();
-
-
                 Boolean insertgiohang=sqLiteHelper.Insertgiohang(username,imgsp,idsp,tensp,giasp,soluong);
                 if(insertgiohang==true) {
                     Intent intent1 = new Intent(XemchitietmonanActivity.this, GiohangActivity.class);
@@ -93,5 +85,18 @@ public class XemchitietmonanActivity extends AppCompatActivity {
                 else Toast.makeText(getApplicationContext(),"Loi",Toast.LENGTH_LONG).show();
             }
         });
+
     }
+    private void heartclick(){
+        checkyeuthich=sqLiteHelper.checkyeuthich(Integer.toString(item.getId()),"yeuthich");
+        if(checkyeuthich==true){
+            heart.setBackgroundResource(R.drawable.anhtimtrang);
+            sqLiteHelper.updateghichu1(item.getId());
+        }
+        else{
+            heart.setBackgroundResource(R.drawable.anhtimdo);
+            sqLiteHelper.updateghichu(item.getId());
+        }
+    }
+
 }

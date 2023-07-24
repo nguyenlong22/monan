@@ -2,29 +2,27 @@ package com.example.appbandoan.model;
 
 public class Donhang {
     int id;
-    String username,idmonan,nammonan,giamonan ,soluongmonan,diachinhan,ghichu,date;
+    String username,trangthai,tongtien,tienphichuyen,diachinhan,ghichu,date;
 
     public Donhang() {
     }
 
-    public Donhang(int id, String username, String idmonan, String nammonan, String giamonan, String soluongmonan, String diachinhan, String ghichu, String date) {
+    public Donhang(int id, String username, String trangthai, String tongtien, String tienphichuyen, String diachinhan, String ghichu, String date) {
         this.id = id;
         this.username = username;
-        this.idmonan = idmonan;
-        this.nammonan = nammonan;
-        this.giamonan = giamonan;
-        this.soluongmonan = soluongmonan;
+        this.trangthai = trangthai;
+        this.tongtien = tongtien;
+        this.tienphichuyen = tienphichuyen;
         this.diachinhan = diachinhan;
         this.ghichu = ghichu;
         this.date = date;
     }
 
-    public Donhang(String username, String idmonan, String nammonan, String giamonan, String soluongmonan, String diachinhan, String ghichu, String date) {
+    public Donhang(String username, String trangthai, String tongtien, String tienphichuyen, String diachinhan, String ghichu, String date) {
         this.username = username;
-        this.idmonan = idmonan;
-        this.nammonan = nammonan;
-        this.giamonan = giamonan;
-        this.soluongmonan = soluongmonan;
+        this.trangthai = trangthai;
+        this.tongtien = tongtien;
+        this.tienphichuyen = tienphichuyen;
         this.diachinhan = diachinhan;
         this.ghichu = ghichu;
         this.date = date;
@@ -46,36 +44,28 @@ public class Donhang {
         this.username = username;
     }
 
-    public String getIdmonan() {
-        return idmonan;
+    public String getTrangthai() {
+        return trangthai;
     }
 
-    public void setIdmonan(String idmonan) {
-        this.idmonan = idmonan;
+    public void setTrangthai(String trangthai) {
+        this.trangthai = trangthai;
     }
 
-    public String getNammonan() {
-        return nammonan;
+    public String getTongtien() {
+        return tongtien;
     }
 
-    public void setNammonan(String nammonan) {
-        this.nammonan = nammonan;
+    public void setTongtien(String tongtien) {
+        this.tongtien = tongtien;
     }
 
-    public String getGiamonan() {
-        return giamonan;
+    public String getTienphichuyen() {
+        return tienphichuyen;
     }
 
-    public void setGiamonan(String giamonan) {
-        this.giamonan = giamonan;
-    }
-
-    public String getSoluongmonan() {
-        return soluongmonan;
-    }
-
-    public void setSoluongmonan(String soluongmonan) {
-        this.soluongmonan = soluongmonan;
+    public void setTienphichuyen(String tienphichuyen) {
+        this.tienphichuyen = tienphichuyen;
     }
 
     public String getDiachinhan() {

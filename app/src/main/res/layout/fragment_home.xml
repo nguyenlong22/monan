@@ -50,13 +50,115 @@ android:orientation="vertical">
                 android:id="@+id/btnmonanall"
                 android:src="@drawable/all"
                 android:layout_width="80dp"
-                android:layout_height="80dp"/>
-
+                android:layout_height="90dp"/>
             <TextView
                 android:id="@+id/textView1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="All"
+                android:textSize="14dp"
+                android:gravity="center" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/btnmonanman"
+                android:src="@drawable/monanman"
+                android:layout_width="80dp"
+                android:layout_height="90dp"/>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Món ăn mặn"
+                android:textSize="14dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/btntrasua"
+                android:src="@drawable/anhtrasua"
+                android:layout_width="80dp"
+                android:layout_height="90dp"/>
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Đồ uống"
+                android:textSize="14dp"
+                android:gravity="center" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/btndochay"
+                android:src="@drawable/dochay"
+                android:layout_width="80dp"
+                android:layout_height="90dp"/>
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Đồ chay"
+                android:textSize="14dp"
+                android:gravity="center" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/btndoannhanh"
+                android:src="@drawable/doannhanh"
+                android:layout_width="80dp"
+                android:layout_height="90dp"/>
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Đồ ăn nhanh"
+                android:textSize="14dp"
+                android:gravity="center" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/btndoansan"
+                android:src="@drawable/doansang"
+                android:layout_width="80dp"
+                android:layout_height="90dp"/>
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Đồ ăn sáng"
+                android:textSize="14dp"
+                android:gravity="center" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/btngan"
+                android:src="@drawable/ggmap"
+                android:layout_width="80dp"
+                android:layout_height="90dp"/>
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Gần tôi"
                 android:textSize="14dp"
                 android:gravity="center" />
         </LinearLayout>

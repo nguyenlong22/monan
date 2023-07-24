@@ -33,10 +33,10 @@
             android:layout_marginLeft="150dp"/>
             <ImageButton
                 android:id="@+id/heart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/heart_white"
-                android:layout_marginTop="30dp"/>
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="90dp"
+                android:background="@drawable/anhtimtrang"/>
         </LinearLayout>
         <EditText
         android:id="@+id/edtudma21"
