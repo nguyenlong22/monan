@@ -16,6 +16,7 @@ import com.example.appbandoan.R;
 import com.example.appbandoan.adapter.GiohangAdapter;
 import com.example.appbandoan.dal.SQLiteHelper;
 import com.example.appbandoan.model.Giohang;
+import com.example.appbandoan.model.taikhoan;
 import com.example.appbandoan.utils.MySharedPreferences;
 
 import java.util.List;
@@ -39,7 +40,9 @@ public class GiohangActivity extends AppCompatActivity implements View.OnClickLi
         diachinhank=findViewById(R.id.diachinhan);
         tongtien=findViewById(R.id.tongsotien);
         String username=preferences.getUserName();
-        dcnhan=sqLiteHelper.laydiachi(username);
+        Log.e("Test",username);
+        taikhoan data=sqLiteHelper.laydatauser(username);
+        dcnhan=data.getDiachi();
         diachinhank.setText(dcnhan);
         
 
@@ -49,7 +52,10 @@ public class GiohangActivity extends AppCompatActivity implements View.OnClickLi
         LinearLayoutManager manager=new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
+        long tongtiengh=0;
         if(list!=null) Log.e("Test","ok");
+       if(list!=null) tongtiengh=adapter.gettongtien();
+        tongtien.setText(Long.toString(tongtiengh));
         themvaodonhang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

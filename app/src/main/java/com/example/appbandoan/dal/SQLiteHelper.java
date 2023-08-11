@@ -300,6 +300,26 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             String mota=cursor.getString(7);
             String date=cursor.getString(8);
             list.add(new Item(idsp,img,username,title,category,price,diachi,mota,date));
+            Log.e("Test",idsp+img+username+title+category+price);
+        }
+        return list;
+    }
+    public List<Item> locitemmonan(String tenloaiitem){
+        List<Item> list=new ArrayList<>();
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=db.query("monan",null,"category=?",new String[]{tenloaiitem},null,null,null);
+        while (cursor!=null && cursor.moveToNext()){
+            int idsp=cursor.getInt(0);
+            String username=cursor.getString(1);
+            int img=cursor.getInt(2);
+            String title=cursor.getString(3);
+            String category=cursor.getString(4);
+            String price= cursor.getString(5);
+            String diachi= cursor.getString(6);
+            String mota=cursor.getString(7);
+            String date=cursor.getString(8);
+            list.add(new Item(idsp,img,username,title,category,price,diachi,mota,date));
+            Log.e("Test",idsp+img+username+title+category+price);
         }
         return list;
     }

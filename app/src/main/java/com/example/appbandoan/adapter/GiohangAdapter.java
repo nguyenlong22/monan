@@ -1,12 +1,9 @@
 package com.example.appbandoan.adapter;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,10 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appbandoan.R;
-import com.example.appbandoan.activity.GiohangActivity;
 import com.example.appbandoan.dal.SQLiteHelper;
 import com.example.appbandoan.model.Giohang;
-import com.example.appbandoan.model.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +49,11 @@ public class GiohangAdapter extends RecyclerView.Adapter<GiohangAdapter.GiohangV
         holder.img.setImageResource(giohang.getImgsp());
         holder.tvnamema.setText(giohang.getTensp());
         holder.tvsoluongma.setText(giohang.getSoluongsp());
+        holder.dongia.setText(giohang.getGiasp());
+        int gsp=Integer.parseInt(giohang.getGiasp());
+        int slg=Integer.parseInt(giohang.getSoluongsp());
+        int tongg=gsp*slg;
+        holder.tonggia.setText(Integer.toString(tongg));
         holder.btXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +75,7 @@ public class GiohangAdapter extends RecyclerView.Adapter<GiohangAdapter.GiohangV
 
     public class GiohangViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private ImageView img;
-        private TextView tvnamema,tvsoluongma;
+        private TextView tvnamema,tvsoluongma,dongia,tonggia;
         private Button btXoa;
         public GiohangViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,6 +83,8 @@ public class GiohangAdapter extends RecyclerView.Adapter<GiohangAdapter.GiohangV
             tvnamema=itemView.findViewById(R.id.tenmonangh);
             tvsoluongma=itemView.findViewById(R.id.soluongmonangh);
             btXoa=itemView.findViewById(R.id.xoagiohang);
+            dongia=itemView.findViewById(R.id.dongiamonangh);
+            tonggia=itemView.findViewById(R.id.tongiamonangh);
             itemView.setOnClickListener(this);
         }
 
@@ -96,6 +98,17 @@ public class GiohangAdapter extends RecyclerView.Adapter<GiohangAdapter.GiohangV
     public interface GiohangItemListener{
         void onItemClick(View view,int postion);
 
+    }
+    public long gettongtien(){
+        long tongtiengh=0;
+        for(int i=0;i<monanList.size();i++){
+            Giohang giohang=monanList.get(i);
+            long dongia=Integer.parseInt(giohang.getGiasp());
+            long solgsp=Integer.parseInt(giohang.getSoluongsp());
+            long tonggia=dongia*solgsp;
+            tongtiengh=tongtiengh+tonggia;
+        }
+        return tongtiengh;
     }
 
 }

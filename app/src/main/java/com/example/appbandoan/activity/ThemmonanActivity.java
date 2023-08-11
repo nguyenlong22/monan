@@ -1,13 +1,10 @@
 package com.example.appbandoan.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,7 +20,6 @@ import com.example.appbandoan.dal.SQLiteHelper;
 import com.example.appbandoan.model.Item;
 import com.example.appbandoan.utils.MySharedPreferences;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -32,7 +28,7 @@ public class ThemmonanActivity extends AppCompatActivity implements MonanAdapter
     private int[] imgs={R.drawable.banhmi,R.drawable.banhmi2,R.drawable.bunbo,
             R.drawable.bunbohue,R.drawable.humbeger,R.drawable.humbeger2,R.drawable.mi,
             R.drawable.mi2,R.drawable.trasua,R.drawable.trasua2,R.drawable.tratac};
-     String[] loaimonan2= {"Mon an man","Do uong","Do an chay","Do an nhanh","Do an sang"};
+     String[] loaimonan2= {"Món ăn mặn","Đồ uống","Đồ ăn chay","Đồ ăn nhanh","Đồ ăn sáng"};
      private RecyclerView recyclerView;
      private MonanAdapter adapter;
      private EditText ename,egia,ediachi,emota;
@@ -40,6 +36,8 @@ public class ThemmonanActivity extends AppCompatActivity implements MonanAdapter
      private int pcrr;
      private MySharedPreferences preferences;
      private SQLiteHelper sqLiteHelper;
+
+     
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +52,7 @@ public class ThemmonanActivity extends AppCompatActivity implements MonanAdapter
         adapter.setClickListener(this);
         sqLiteHelper=new SQLiteHelper(this);
         preferences=new MySharedPreferences(this);
+
         btadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

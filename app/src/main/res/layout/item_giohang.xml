@@ -30,11 +30,31 @@
         android:text="1"
         android:textColor="@color/black"
         android:gravity="center"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/dongiamonangh"
+            android:text="30000 đồng"
+            android:textColor="@color/black"
+            android:gravity="center"/>
     </LinearLayout>
-    <Button
+    <LinearLayout
         android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/tongiamonangh"
+            android:text="30000 đồng"
+            android:textColor="@color/black"
+            android:gravity="center"/>
+    <Button
         android:id="@+id/xoagiohang"
-        android:layout_width="40dp"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="Xóa" />
+        android:text="Xóa"
+        android:layout_gravity="center"/>
+    </LinearLayout>
 </LinearLayout>
